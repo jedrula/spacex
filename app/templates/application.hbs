@@ -1,5 +1,69 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+{{!-- TODO add a subroute for a chosen details component --}}
+<div class="layout">
+  <div class="navigation">
+    <input type="text" onkeyup={{action (mut launchFilter) value="target.value"}}>
+    {{#each filteredLaunches as |launch|}}
+      {{launch-min-info
+        name=launch.flight_number
+        date=launch.launch_date_utc
+        click=(action (mut detailedLaunch) launch)
+      }}
+      <br>
+    {{/each}}
+  </div>
+  <div class="details">
+  {{!-- TODO git commit first not to loose stuff --}}
+  {{!-- TODO make a subroute here! --}}
+    <div class="details-inner">
+      {{#if detailedLaunch}}
+        <h1>Details:</h1>
+        {{launch-min-info
+          name=detailedLaunch.flight_number
+          date=detailedLaunch.launch_date_utc
+        }}
+        {{#if detailedLaunch.links.mission_patch}}
+          <img src={{detailedLaunch.links.mission_patch}} width="200px">
+        {{/if}}
 
-{{outlet}}
+        {{!-- TODO style tables --}}
+        <table>
+          <caption>Rocket</caption>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>type</th>
+          </tr>
+          <tr>
+            <td>{{detailedLaunch.rocket.rocket_id}}</td>
+            <td>{{detailedLaunch.rocket.rocket_id}}</td>
+            <td>{{detailedLaunch.rocket.rocket_id}}</td>
+          </tr>
+        </table>
+
+        <table>
+          <caption>Payloads</caption>
+          <tr>
+            <th>id</th>
+            <th>type</th>
+            <th>mass</th>
+          </tr>
+          {{#each detailedLaunch.payloads as |payload|}}
+            <tr>
+              <td>{{payload.payload_id}}</td>
+              <td>{{payload.payload_type}}</td>
+              <td>{{payload.payload_mass_kg}} kg</td>
+              {{!-- TODO add a toggle --}}
+            </tr>
+          {{/each}}
+        </table>
+        <div>launch result: {{detailedLaunch.launch_success}}</div>
+        <div>land result: {{detailedLaunch.land_success}}</div>
+        {{!-- TODO do more then true --}}
+        <div>{{detailedLaunch.details}}</div>
+        {{!-- TODO style details --}}
+        {{!-- TODO add map https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyANPmHQdgnsO3OTgZFqsPHXB7_vCVIu1kk --}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+{{!-- {{outlet}} --}}
