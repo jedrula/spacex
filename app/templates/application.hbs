@@ -1,7 +1,6 @@
-{{!-- TODO add a subroute for a chosen details component --}}
 <div class="layout">
   <div class="navigation">
-    <input type="text" onkeyup={{action (mut launchFilter) value="target.value"}}>
+    Filter by flight number: <input type="text" onkeyup={{action (mut launchFilter) value="target.value"}}>
     {{#each filteredLaunches as |launch|}}
       {{#link-to 'launch' launch.flight_number class='no-underine black'}}
         {{launch-min-info
@@ -18,4 +17,3 @@
     </div>
   </div>
 </div>
-{{!-- {{outlet}} --}}

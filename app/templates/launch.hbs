@@ -7,7 +7,6 @@
   <img src={{detailedLaunch.links.mission_patch}} width="200px">
 {{/if}}
 
-{{!-- TODO style tables --}}
 <table>
   <caption>Rocket</caption>
   <tr>
@@ -33,13 +32,22 @@
     <tr>
       <td>{{payload.payload_id}}</td>
       <td>{{payload.payload_type}}</td>
-      <td>{{payload.payload_mass_kg}} kg</td>
-      {{!-- TODO add a toggle --}}
+      {{#if usesKg}}
+        <td>
+          {{payload.payload_mass_kg}} kg
+          <button {{action (mut usesKg) false}}>switch to lbs</button>
+        </td>
+      {{else}}
+        <td>
+          {{payload.payload_mass_lbs}} lbs
+          <button {{action (mut usesKg) true}}>switch to kgs</button>
+        </td>
+      {{/if}}
     </tr>
   {{/each}}
 </table>
-<div>launch result: {{detailedLaunch.launch_success}}</div>
-<div>land result: {{detailedLaunch.land_success}}</div>
+<div>launch result: {{bool-to-string detailedLaunch.launch_success}}</div>
+<div>land result: {{bool-to-string detailedLaunch.land_success}}</div>
 {{!-- TODO do more then true --}}
 <div>{{detailedLaunch.details}}</div>
 {{!-- TODO style details --}}
