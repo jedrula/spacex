@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('launch', { path: '/launch/:flight_number' });
 });
 
 export default Router;
