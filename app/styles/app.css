@@ -19,6 +19,9 @@ th, td {
 .navigation {
   grid-row: 1;
   grid-column: 1;
+}
+
+.list {
   height: 100vh;
   overflow: scroll;
 }

@@ -1,18 +1,23 @@
 <div class="layout">
   <div class="navigation">
-    Filter by flight number: <input type="text" onkeyup={{action (mut launchFilter) value="target.value"}}>
-    {{#each filteredLaunches as |launch|}}
-      {{#link-to 'launch' launch.flight_number class='no-underine black'}}
-        {{launch-min-info
-          name=launch.flight_number
-          date=launch.launch_date_utc
-        }}
-      {{/link-to}}
-      <br>
-    {{/each}}
+    <div class="filter">
+      Filter by flight number: <input type="text" onkeyup={{action (mut launchFilter) value="target.value"}}>
+    </div>
+    <div class="list">
+      {{#each filteredLaunches as |launch|}}
+        {{#link-to 'launch' launch.flight_number class='no-underine black'}}
+          {{launch-min-info
+            name=launch.flight_number
+            date=launch.launch_date_utc
+          }}
+        {{/link-to}}
+        <br>
+      {{/each}}
+    </div>
   </div>
   <div class="details">
     <div class="details-inner">
+      <h1>Details:</h1>
       {{outlet}}
     </div>
   </div>
