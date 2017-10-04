@@ -47,7 +47,7 @@
 </table>
 <div>launch result: {{bool-to-string detailedLaunch.launch_success}}</div>
 <div>land result: {{bool-to-string detailedLaunch.land_success}}</div>
-{{!-- TODO do more then true --}}
 <div>{{detailedLaunch.details}}</div>
+
+{{location-map location=detailedLaunch.launch_site.site_name}}
 {{!-- TODO style details --}}
-{{!-- TODO add map https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyANPmHQdgnsO3OTgZFqsPHXB7_vCVIu1kk --}}
